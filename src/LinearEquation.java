@@ -13,6 +13,10 @@ public class LinearEquation {
    this precondition is not violated)
   */
     public LinearEquation(int x1, int y1, int x2, int y2){
+        this.x1 = x1;
+        this.x2 = x2;
+        this.y1 = y1;
+        this.y2 = y2;
     }
 
 
@@ -38,7 +42,8 @@ public class LinearEquation {
     /* Calculates and returns the slope of the line between (x1, y1) and
        (x2, y2), rounded to the nearest hundredth */
     public double slope(){
-        double slope = roundedToHundredth((y2-y1)/(x2-x1));
+        double slope =(y2-y1)/(x2-x1);
+        return roundedToHundredth(slope);
     }
 
 
@@ -69,10 +74,10 @@ public class LinearEquation {
      */
     public String equation(){
         String mySlope = "0";
-        double numerator = (y2-y1);
-        double denominator = (x2-x1);
+        int numerator = (y2-y1);
+        int denominator = (x2-x1);
         if(numerator % denominator == 0){
-            mySlope = numerator/denominator + "";
+            mySlope = (int)(numerator/denominator) + "";
         }
         else{
             if (numerator > 0 && denominator < 0){
@@ -86,13 +91,13 @@ public class LinearEquation {
             }
         }
         if (yIntercept() > 0){
-            return "y = " + slope() + "x + " + Math.abs(yIntercept());
+            return "y = " + mySlope + "x + " + yIntercept();
         }
-        else if (yIntercept() > 0){
-            return "y = " + slope() + "x - " + yIntercept();
+        else if (yIntercept() < 0){
+            return "y = " + mySlope + "x - " + Math.abs(yIntercept());
         }
         else{
-            return "y = " + slope() + "x";
+            return "y = " + mySlope + "x";
         }
     }
 
@@ -141,12 +146,12 @@ public class LinearEquation {
       */
     public String lineInfo(){
         String myInfo = "";
-        myInfo += "The two points are: (" + x1 + ", " + y1 + ")" + "and " + "(" + x2 + ", " + y2 + ")";
+        myInfo += "The two points are: (" + x1 + ", " + y1 + ")" + " and " + "(" + x2 + ", " + y2 + ")";
         myInfo += "\n" + "The equation of the line between these points is: " + equation();
         myInfo += "\n" + "The slope of this line is: " + slope();
         myInfo += "\n" + "The y-intercept of the line is: " + yIntercept();
         myInfo += "\n" + "The distance between the two points is: " + distance();
-        myInfo += "\n\n" + "The point on the line is" + coordinateForX();
+        return myInfo;
     }
 
 }

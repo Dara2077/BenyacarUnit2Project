@@ -42,7 +42,7 @@ public class LinearEquation {
     /* Calculates and returns the slope of the line between (x1, y1) and
        (x2, y2), rounded to the nearest hundredth */
     public double slope(){
-        double slope =(y2-y1)/(x2-x1);
+        double slope =(double)(y2-y1)/(x2-x1);
         return roundedToHundredth(slope);
     }
 
@@ -77,7 +77,15 @@ public class LinearEquation {
         int numerator = (y2-y1);
         int denominator = (x2-x1);
         if(numerator % denominator == 0){
-            mySlope = (int)(numerator/denominator) + "";
+            if (numerator/denominator == 1){
+                mySlope = "";
+            }
+            else if (numerator/denominator == -1){
+                mySlope = "-";
+            }
+            else{
+                mySlope = (int)(numerator/denominator) + "";
+            }
         }
         else{
             if (numerator > 0 && denominator < 0){
@@ -89,6 +97,9 @@ public class LinearEquation {
             else{
                 mySlope = numerator + "/" + denominator;
             }
+        }
+        if ((numerator/denominator == 0) || (yIntercept() % 1 == 0)){
+            return "y = " + Math.round(yIntercept());
         }
         if (yIntercept() > 0){
             return "y = " + mySlope + "x + " + yIntercept();
@@ -126,7 +137,7 @@ public class LinearEquation {
         int wholeNum = (int)(toRound - toRoundRemainder);
         toRoundRemainder *= 100;
         toRoundRemainder = Math.round(toRoundRemainder);
-        toRoundRemainder /= 100;
+        toRoundRemainder /= 100.0;
         return wholeNum + toRoundRemainder;
     }
 

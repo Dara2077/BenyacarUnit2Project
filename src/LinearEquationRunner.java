@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 public class LinearEquationRunner {
     public static void main(String args[]){
         Scanner scan = new Scanner(System.in);
+        System.out.println("Welcome!");
         System.out.print("Enter coordinate 1: ");
         String coord1 = scan.nextLine();
         System.out.print("Enter coordinate 2: ");
@@ -19,7 +20,7 @@ public class LinearEquationRunner {
         int x2 = Integer.parseInt(coord2.substring(parenth2a +1, comma2));
         int y2 = Integer.parseInt(coord2.substring(comma2 +2, parentha2b));
         if (x1 == x2){
-            System.out.println( "These points are on a vertical line: x= " + x1);
+            System.out.println( "These points are on a vertical line: x = " + x1);
             return;
         }
         LinearEquation myLinEqu = new LinearEquation (x1, y1, x2, y2);

@@ -7,19 +7,17 @@ public class LinearEquation {
     private int x2;
     private int y2;
 
-
     /* Creates a LinearEquation object */
 /* PRECONDITION: x1 and x2 are NOT equal (client programs are responsible for ensuring
    this precondition is not violated)
   */
     public LinearEquation(int x1, int y1, int x2, int y2){
+        //Use this because variable names are the same
         this.x1 = x1;
         this.x2 = x2;
         this.y1 = y1;
         this.y2 = y2;
     }
-
-
 
 /* Calculates and returns distance between (x1, y1) and (x2, y2), rounded to
    the nearest hundredth */
@@ -36,8 +34,6 @@ public class LinearEquation {
        double b=  y1 - (slope() * x1);
        return roundedToHundredth(b);
     }
-
-
 
     /* Calculates and returns the slope of the line between (x1, y1) and
        (x2, y2), rounded to the nearest hundredth */
@@ -76,11 +72,11 @@ public class LinearEquation {
         String mySlope = "0";
         int numerator = (y2-y1);
         int denominator = (x2-x1);
-        if(numerator % denominator == 0){
-            if (numerator/denominator == 1){
+        if(numerator % denominator == 0){ //determines if slope is a whole number
+            if (numerator/denominator == 1){ //determines if slope is 1
                 mySlope = "";
             }
-            else if (numerator/denominator == -1){
+            else if (numerator/denominator == -1){ //determines if slope is -1
                 mySlope = "-";
             }
             else{
@@ -88,23 +84,23 @@ public class LinearEquation {
             }
         }
         else{
-            if (numerator > 0 && denominator < 0){
+            if (numerator > 0 && denominator < 0){ //is true if numerator is positive and denominator is negative
                 mySlope = "-" + numerator + "/" + Math.abs(denominator);
             }
-            else if(numerator <0 && denominator <0){
+            else if(numerator <0 && denominator <0){ //is true if numerator is negative and denominator is negative
                 mySlope = Math.abs(numerator) + "/" + Math.abs(denominator);
             }
             else{
                 mySlope = numerator + "/" + denominator;
             }
         }
-        if ((numerator/denominator == 0) || (yIntercept() % 1 == 0)){
+        if ((numerator/denominator == 0) && (yIntercept() % 1 == 0)){ //returns true if slope is 0 and y-int is an integer
             return "y = " + Math.round(yIntercept());
         }
-        if (yIntercept() > 0){
+        if (yIntercept() > 0){ //returns true if y int is positive
             return "y = " + mySlope + "x + " + yIntercept();
         }
-        else if (yIntercept() < 0){
+        else if (yIntercept() < 0){ //returns true if y int is negative
             return "y = " + mySlope + "x - " + Math.abs(yIntercept());
         }
         else{
